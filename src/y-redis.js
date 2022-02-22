@@ -86,6 +86,11 @@ export class PersistenceDoc {
         })
       })
       if (this._fetchingClock <= this._clock) {
+        let yText = new Y.Text()
+        yText = this.doc.getText("redisSynched")
+        yText.delete(0, yText.length)
+        yText.insert(0, "true")
+        
         return this
       } else {
         // there is still something missing. new updates came in. fetch again.
